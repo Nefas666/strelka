@@ -14,47 +14,44 @@ export function AboutSection({ scrollToSection }: { scrollToSection?: (index: nu
       <div className="mx-auto w-full max-w-7xl">
         <div className="grid gap-8 md:grid-cols-2 md:gap-16 lg:gap-24">
           {/* Right side - Profile Card */}
-          <div className="flex flex-col justify-center">
+         <div>
             <div
-              className={`border border-foreground/10 rounded-lg p-6 transition-all duration-700 ${isVisible ? "translate-y-0 opacity-100" : "-translate-y-12 opacity-0"
-                }`}
-              style={{ transitionDelay: "300ms" }}
+              className={`mb-6 transition-all duration-700 md:mb-12 ${
+                isVisible ? "translate-y-0 opacity-100" : "-translate-y-12 opacity-0"
+              }`}
             >
-              <div className="flex items-center gap-4 mb-4">
-                <div className="h-16 w-16 rounded-full bg-primary/20 flex items-center justify-center">
-                  <span className="text-primary text-2xl font-light">SM</span>
-                </div>
-                <div>
-                  <h3 className="text-xl font-light text-primary">Strelka</h3>
-                  <p className="text-foreground font-medium">Selene Manno</p>
-                </div>
-              </div>
+              <h2 className="mb-3 font-sans text-3xl font-light leading-[1.1] tracking-tight text-foreground md:mb-4 md:text-6xl lg:text-7xl">
+                aka/
+                <br />
+                Selene
+                <span className="text-foreground/40">M.</span>
+              </h2>
+            </div>
 
-              <div className="space-y-2 mb-4">
-                <p className="text-foreground font-light">Web Designer & Developer</p>
-                <div className="space-y-1">
-                  <a
-                    href="mailto:contact@strelka.it"
-                    className="text-foreground/80 font-light hover:text-primary transition-colors text-sm"
-                  >
-                    contact@strelka.it
-                  </a>
-                  <p className="text-foreground/80 font-light text-sm">www.strelka.it</p>
-                </div>
-              </div>
+            <div
+              className={`space-y-3 transition-all duration-700 md:space-y-4 ${
+                isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+              }`}
+              style={{ transitionDelay: "200ms" }}
+            >
+              <p className="max-w-md text-sm leading-relaxed text-foreground/90 md:text-lg">
+               Sono una sviluppatrice web freelance con la passione per l'innovazione e la tecnologia. 
 
-              <div className="pt-4 border-t border-foreground/10">
-                <p className="text-primary font-medium text-sm">Proietta la tua attività nel web</p>
-              </div>
+              </p>
+              <p className="max-w-md text-sm leading-relaxed text-foreground/90 md:text-lg">
+                Mi sono specializzata nello sviluppo di soluzioni web moderne e performanti e nel design dei componenti funzionali, utilizzando le tecnologie più recenti per creare esperienze web su misura per le tue esigenze.
+
+              </p>
             </div>
           </div>
+
 
           {/* Right side - Stats with creative layout */}
           <div className="flex flex-col justify-center space-y-6 md:space-y-12">
             {[
-              { value: "150+", label: "Projects", sublabel: "Delivered worldwide", direction: "right" },
-              { value: "8", label: "Years", sublabel: "Of innovation", direction: "left" },
-              { value: "12", label: "Awards", sublabel: "Industry recognition", direction: "right" },
+              { value: "6+", label: "Progetti", sublabel: "Progetti On Going", direction: "right" },
+              { value: "5", label: "Anni", sublabel: "Di esperienza", direction: "left" },
+              { value: "12+", label: "Clienti", sublabel: "Clienti & Collaborazioni", direction: "right" },
             ].map((stat, i) => {
               const getRevealClass = () => {
                 if (!isVisible) {
@@ -90,10 +87,7 @@ export function AboutSection({ scrollToSection }: { scrollToSection?: (index: nu
           style={{ transitionDelay: "750ms" }}
         >
           <MagneticButton size="lg" variant="primary" onClick={() => scrollToSection?.(4)}>
-            Start a Project
-          </MagneticButton>
-          <MagneticButton size="lg" variant="secondary" onClick={() => scrollToSection?.(1)}>
-            View Our Work
+            Hai un progetto in mente? Parliamone 
           </MagneticButton>
         </div>
       </div>

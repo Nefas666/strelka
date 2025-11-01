@@ -10,9 +10,9 @@ export function WorkSection() {
       ref={ref}
       className="flex h-screen w-screen shrink-0 snap-start items-center px-6 pt-20 md:px-12 md:pt-0 lg:px-16"
     >
-      <div className="mx-auto w-full max-w-7xl">
+      <div className="mx-auto w-full max-w-9xl">
         <div
-          className={`mb-12 transition-all duration-700 md:mb-16 ${isVisible ? "translate-x-0 opacity-100" : "-translate-x-12 opacity-0"
+          className={`mb-12 transition-all duration-700 md:mb-6 ${isVisible ? "translate-x-0 opacity-100" : "-translate-x-12 opacity-0"
             }`}
         >
           <h2 className="mb-2 font-sans text-5xl font-light tracking-tight text-foreground md:text-6xl lg:text-7xl">
@@ -21,7 +21,7 @@ export function WorkSection() {
           <p className="font-mono text-sm text-foreground/60 md:text-base">/ Lavori recenti</p>
         </div>
 
-        <div className="space-y-6 md:space-y-8">
+        <div className="space-y-2 md:space-y-4">
           {[
             {
               number: "01",

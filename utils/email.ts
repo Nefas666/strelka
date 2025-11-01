@@ -1,41 +1,42 @@
-import { Resend } from "resend"
-import type { ContactFormData } from "@/app/actions/contact-form"
+import { Resend } from "resend";
+import type { ContactFormData } from "@/app/actions/contact-form";
 
 // Initialize Resend with your API key
 // Check if API key exists and provide better error handling
-const resendApiKey = process.env.RESEND_API_KEY
-const resend = resendApiKey ? new Resend(resendApiKey) : null
+const resendApiKey = process.env.RESEND_API_KEY;
+const resend = resendApiKey ? new Resend(resendApiKey) : null;
 
 export async function sendContactNotification(
   formData: ContactFormData,
   quoteId?: string,
-  pdfUrl?: string | null,
+  pdfUrl?: string | null
 ): Promise<boolean> {
   try {
     // Check if Resend is properly initialized
     if (!resend) {
-      console.error("Resend API key is missing or invalid")
-      return false
+      console.error("Resend API key is missing or invalid");
+      return false;
     }
 
-    const { name, email, phone, projectType, budget, message } = formData
+    const { name, email, phone, projectType, budget, message } = formData;
 
     // Format budget for display
     const budgetMap: Record<string, string> = {
-      low: "Meno di €1.000",
-      medium: "€1.000 - €3.000",
-      high: "€3.000 - €5.000",
-      enterprise: "Più di €5.000",
-    }
+      "<1000": "Meno di 1000€",
+      "1000-3000": "1000€ - 3000€",
+      "3000-5000": "3000€ - 5000€",
+      "5000-10000": "5000€ - 10000€",
+      ">10000": "Più di 10000€",
+    };
 
     // Format project type for display
     const projectTypeMap: Record<string, string> = {
       website: "Sito Web",
       ecommerce: "E-commerce",
-      webapp: "Web App",
-      mobileapp: "App Mobile",
+      app: "Applicazione",
+      branding: "Branding",
       other: "Altro",
-    }
+    };
 
     // Costruisci l'email HTML
     const emailHtml = `
@@ -70,7 +71,7 @@ export async function sendContactNotification(
           Questa è un'email automatica inviata dal modulo di contatto del sito Strelka.
         </p>
       </div>
-    `
+    `;
 
     // Invia l'email
     const { data, error } = await resend.emails.send({
@@ -78,16 +79,16 @@ export async function sendContactNotification(
       to: "contact@strelka.it", // Assicurati che questo sia l'indirizzo email corretto
       subject: `Nuova richiesta da ${name} ${quoteId ? `- Preventivo #${quoteId}` : ""}`,
       html: emailHtml,
-    })
+    });
 
     if (error) {
-      console.error("Error sending email notification:", error)
-      return false
+      console.error("Error sending email notification:", error);
+      return false;
     }
 
-    return true
+    return true;
   } catch (error) {
-    console.error("Error in sendContactNotification:", error)
-    return false
+    console.error("Error in sendContactNotification:", error);
+    return false;
   }
 }

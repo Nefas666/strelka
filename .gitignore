@@ -9,6 +9,8 @@ pnpm-lock.yaml
 
 # testing
 /coverage
+/.vscode
+/.next
 
 # next.js
 /.next/
