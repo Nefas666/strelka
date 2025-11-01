@@ -25,23 +25,23 @@ export function ServicesSection() {
         <div className="grid gap-8 md:grid-cols-2 md:gap-x-16 md:gap-y-12 lg:gap-x-24">
           {[
             {
-              title: "Creative Development",
-              description: "Pushing the boundaries of what's possible on the web",
+              title: "Creative Development & Technology",
+              description: "Siti web personalizzati che si distinguono per design, velocità e usabilità, costruiti con le tecnologie più recenti per soluzioni performanti e scalabili",
               direction: "top",
             },
             {
-              title: "Visual Design",
-              description: "Crafting memorable experiences through thoughtful aesthetics",
+              title: "Visual Design & Restyling",
+              description: "Nuova vita ai siti web esistenti attraverso un design moderno, funzionalità migliorate e un'esperienza utente rinnovata",
               direction: "right",
             },
             {
-              title: "Motion & Animation",
-              description: "Bringing interfaces to life with purposeful movement",
+              title: "Ecommerce & Conversion",
+              description: "Piattaforme e-commerce complete e landing page ottimizzate per la conversione che catturano l'attenzione e generano risultati concreti",
               direction: "left",
             },
             {
-              title: "Technical Strategy",
-              description: "Building scalable solutions that perform beautifully",
+              title: "Knowledge Systems & Technical Strategy",
+              description: "Sistemi di gestione dei contenuti personalizzati, progettati per rispondere alle specifiche esigenze della tua azienda",
               direction: "bottom",
             },
           ].map((service, i) => (
