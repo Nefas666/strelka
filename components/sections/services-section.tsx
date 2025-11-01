@@ -1,20 +1,25 @@
 "use client"
 
+import { useState } from "react"
+import { ChevronDown } from "lucide-react"
 import { useReveal } from "@/hooks/use-reveal"
+import { useMaxViewportHeight } from "@/hooks/use-viewport-height"
 
 export function ServicesSection() {
   const { ref, isVisible } = useReveal(0.3)
+  const maxHeight = useMaxViewportHeight()
+  const [expandedService, setExpandedService] = useState<number | null>(null)
 
   return (
     <section
       ref={ref}
-      className="flex h-screen w-screen shrink-0 snap-start items-center px-6 pt-20 md:px-12 md:pt-0 lg:px-16"
+      className="flex w-screen shrink-0 snap-start items-center px-4 pt-16 md:px-6 md:pt-20 lg:px-16"
+      style={{ height: maxHeight, maxHeight: maxHeight }}
     >
       <div className="mx-auto w-full max-w-7xl">
         <div
-          className={`mb-12 transition-all duration-700 md:mb-16 ${
-            isVisible ? "translate-y-0 opacity-100" : "-translate-y-12 opacity-0"
-          }`}
+          className={`mb-12 transition-all duration-700 mb-2 md:mb-16 ${isVisible ? "translate-y-0 opacity-100" : "-translate-y-12 opacity-0"
+            }`}
         >
           <h2 className="mb-2 font-sans text-5xl font-light tracking-tight text-foreground md:text-6xl lg:text-7xl">
             Servizi
@@ -22,7 +27,7 @@ export function ServicesSection() {
           <p className="font-mono text-sm text-foreground/60 md:text-base">/ Quello che posso fare</p>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-2 md:gap-x-16 md:gap-y-12 lg:gap-x-24">
+        <div className="grid gap-4 md:grid-cols-2 md:gap-x-16 md:gap-y-12 lg:gap-x-24">
           {[
             {
               title: "Creative Development & Technology",
@@ -45,7 +50,14 @@ export function ServicesSection() {
               direction: "bottom",
             },
           ].map((service, i) => (
-            <ServiceCard key={i} service={service} index={i} isVisible={isVisible} />
+            <ServiceCard
+              key={i}
+              service={service}
+              index={i}
+              isVisible={isVisible}
+              isExpanded={expandedService === i}
+              onToggle={() => setExpandedService(expandedService === i ? null : i)}
+            />
           ))}
         </div>
       </div>
@@ -57,10 +69,14 @@ function ServiceCard({
   service,
   index,
   isVisible,
+  isExpanded,
+  onToggle,
 }: {
   service: { title: string; description: string; direction: string }
   index: number
   isVisible: boolean
+  isExpanded: boolean
+  onToggle: () => void
 }) {
   const getRevealClass = () => {
     if (!isVisible) {

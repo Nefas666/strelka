@@ -1,14 +1,17 @@
 "use client"
 
 import { useReveal } from "@/hooks/use-reveal"
+import { useMaxViewportHeight } from "@/hooks/use-viewport-height"
 
 export function WorkSection() {
   const { ref, isVisible } = useReveal(0.3)
+  const maxHeight = useMaxViewportHeight()
 
   return (
     <section
       ref={ref}
-      className="flex h-screen w-screen shrink-0 snap-start items-center px-6 pt-20 md:px-12 md:pt-0 lg:px-16"
+      className="flex w-screen shrink-0 snap-start items-center px-4 pt-16 md:px-6 md:pt-20 lg:px-16"
+      style={{ height: maxHeight, maxHeight: maxHeight }}
     >
       <div className="mx-auto w-full max-w-9xl">
         <div
@@ -21,7 +24,7 @@ export function WorkSection() {
           <p className="font-mono text-sm text-foreground/60 md:text-base">/ Lavori recenti</p>
         </div>
 
-        <div className="space-y-2 md:space-y-4">
+        <div className="grid gap-4 md:grid-cols-2 md:gap-6 lg:gap-8">
           {[
             {
               number: "01",

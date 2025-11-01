@@ -2,23 +2,25 @@
 
 import { MagneticButton } from "@/components/magnetic-button"
 import { useReveal } from "@/hooks/use-reveal"
+import { useMaxViewportHeight } from "@/hooks/use-viewport-height"
 
 export function AboutSection({ scrollToSection }: { scrollToSection?: (index: number) => void }) {
   const { ref, isVisible } = useReveal(0.3)
+  const maxHeight = useMaxViewportHeight()
 
   return (
     <section
       ref={ref}
-      className="flex h-screen w-screen shrink-0 snap-start items-center px-4 pt-20 md:px-12 md:pt-0 lg:px-16"
+      className="flex w-screen shrink-0 snap-start items-center px-4 pt-16 md:px-6 md:pt-20 lg:px-16"
+      style={{ height: maxHeight, maxHeight: maxHeight }}
     >
       <div className="mx-auto w-full max-w-7xl">
         <div className="grid gap-8 md:grid-cols-2 md:gap-16 lg:gap-24">
           {/* Right side - Profile Card */}
-         <div>
+          <div>
             <div
-              className={`mb-6 transition-all duration-700 md:mb-12 ${
-                isVisible ? "translate-y-0 opacity-100" : "-translate-y-12 opacity-0"
-              }`}
+              className={`mb-6 transition-all duration-700 md:mb-12 ${isVisible ? "translate-y-0 opacity-100" : "-translate-y-12 opacity-0"
+                }`}
             >
               <h2 className="mb-3 font-sans text-3xl font-light leading-[1.1] tracking-tight text-foreground md:mb-4 md:text-6xl lg:text-7xl">
                 aka/
@@ -29,13 +31,12 @@ export function AboutSection({ scrollToSection }: { scrollToSection?: (index: nu
             </div>
 
             <div
-              className={`space-y-3 transition-all duration-700 md:space-y-4 ${
-                isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-              }`}
+              className={`space-y-3 transition-all duration-700 md:space-y-4 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+                }`}
               style={{ transitionDelay: "200ms" }}
             >
               <p className="max-w-md text-sm leading-relaxed text-foreground/90 md:text-lg">
-               Sono una sviluppatrice web freelance con la passione per l'innovazione e la tecnologia. 
+                Sono una sviluppatrice web freelance con la passione per l'innovazione e la tecnologia.
 
               </p>
               <p className="max-w-md text-sm leading-relaxed text-foreground/90 md:text-lg">
@@ -87,7 +88,7 @@ export function AboutSection({ scrollToSection }: { scrollToSection?: (index: nu
           style={{ transitionDelay: "750ms" }}
         >
           <MagneticButton size="lg" variant="primary" onClick={() => scrollToSection?.(4)}>
-            Hai un progetto in mente? Parliamone 
+            Hai un progetto in mente? Parliamone
           </MagneticButton>
         </div>
       </div>

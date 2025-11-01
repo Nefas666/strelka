@@ -9,6 +9,7 @@ import { AboutSection } from "@/components/sections/about-section"
 import { ContactSection } from "@/components/sections/contact-section"
 import { MagneticButton } from "@/components/magnetic-button"
 import { useRef, useEffect, useState } from "react"
+import { useViewportHeight } from "@/hooks/use-viewport-height"
 
 export default function Home() {
   const scrollContainerRef = useRef<HTMLDivElement>(null)
@@ -18,6 +19,7 @@ export default function Home() {
   const touchStartX = useRef(0)
   const shaderContainerRef = useRef<HTMLDivElement>(null)
   const scrollThrottleRef = useRef<number | undefined>(undefined)
+  const viewportHeight = useViewportHeight()
 
   useEffect(() => {
     const checkShaderReady = () => {
@@ -213,19 +215,33 @@ export default function Home() {
       </div>
 
       <nav
-        className={`fixed left-0 right-0 top-0 z-50 flex items-center justify-between px-6 py-6 transition-opacity duration-700 md:px-6 ${isLoaded ? "opacity-100" : "opacity-0"
+        className={`fixed left-0 right-0 top-0 z-50 flex items-center justify-between px-4 py-4 transition-all duration-700 md:px-6 md:py-6 ${isLoaded ? "opacity-100" : "opacity-0"
           }`}
       >
-        <button
-          onClick={() => scrollToSection(0)}
-          className="flex items-center gap-2 transition-transform hover:scale-105"
-        >
-          <img
-            src="/images/logo-white.png"
-            alt="Strelka"
-            className="h-16 w-auto transition-transform hover:scale-105"
-          />
-        </button>
+        {/* Logo dinamico basato sulla sezione */}
+        {currentSection === 0 ? (
+          <button
+            onClick={() => scrollToSection(0)}
+            className="flex items-center gap-3 transition-transform hover:scale-105"
+          >
+            <img
+              src="/images/logo-white.png"
+              alt="Strelka"
+              className="h-20 w-auto transition-transform hover:scale-105 md:h-24"
+            />
+          </button>
+        ) : (
+          <button
+            onClick={() => scrollToSection(0)}
+            className="ml-auto transition-transform hover:scale-105"
+          >
+            <img
+              src="/images/logo-white.png"
+              alt="Strelka"
+              className="h-8 w-auto transition-transform hover:scale-105 md:h-10"
+            />
+          </button>
+        )}
 
         <div className="hidden items-center gap-8 md:flex">
           {["Home", "Progetti", "Servizi", "About", "Contatti"].map((item, index) => (
@@ -253,19 +269,19 @@ export default function Home() {
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
         {/* Hero Section */}
-        <section className="flex min-h-screen w-screen shrink-0 flex-col justify-end px-6 pb-16 pt-24 md:px-12 md:pb-24">
+        <section className="flex w-screen shrink-0 flex-col justify-end px-4 pb-12 pt-20 md:px-6 md:pb-16 md:pt-24" style={{ minHeight: viewportHeight }}>
           <div className="max-w-3xl">
 
             <h1 className="mb-6 animate-in fade-in slide-in-from-bottom-8 font-sans text-6xl font-light leading-[1.1] tracking-tight text-foreground duration-1000 md:text-7xl lg:text-8xl">
               <span className="text-balance">
-                Esperienze digitali 
+                Esperienze digitali
                 <br />
                 in evoluzione
               </span>
             </h1>
             <p className="mb-8 max-w-xl animate-in fade-in slide-in-from-bottom-4 text-lg leading-relaxed text-foreground/90 duration-1000 delay-200 md:text-xl">
               <span className="text-pretty">
-              Trasformare la tua attività con soluzioni web moderne, design personalizzato e tecnologie innovative che ti distinguono dalla concorrenza.
+                Trasformare la tua attività con soluzioni web moderne, design personalizzato e tecnologie innovative che ti distinguono dalla concorrenza.
               </span>
             </p>
             <div className="flex animate-in fade-in slide-in-from-bottom-4 flex-col gap-4 duration-1000 delay-300 sm:flex-row sm:items-center">
