@@ -10,7 +10,6 @@ import { ContactSection } from "@/components/sections/contact-section"
 import { MagneticButton } from "@/components/magnetic-button"
 import { useRef, useEffect, useState } from "react"
 import { useViewportHeight } from "@/hooks/use-viewport-height"
-import { useIsMobile } from "@/hooks/use-mobile"
 
 export default function Home() {
   const scrollContainerRef = useRef<HTMLDivElement>(null)
@@ -21,7 +20,6 @@ export default function Home() {
   const shaderContainerRef = useRef<HTMLDivElement>(null)
   const scrollThrottleRef = useRef<number | undefined>(undefined)
   const viewportHeight = useViewportHeight()
-  const isMobile = useIsMobile()
 
   useEffect(() => {
     const checkShaderReady = () => {
@@ -220,8 +218,8 @@ export default function Home() {
         className={`fixed left-0 right-0 top-0 z-50 flex items-center justify-between px-4 py-4 transition-all duration-700 md:px-6 md:py-6 ${isLoaded ? "opacity-100" : "opacity-0"
           }`}
       >
-        {/* Logo dinamico basato sulla sezione e dispositivo */}
-        {currentSection === 0 && !isMobile ? (
+        {/* Logo dinamico basato sulla sezione */}
+        {currentSection === 0 ? (
           <button
             onClick={() => scrollToSection(0)}
             className="flex items-center gap-3 transition-transform hover:scale-105"
@@ -235,12 +233,12 @@ export default function Home() {
         ) : (
           <button
             onClick={() => scrollToSection(0)}
-            className={`${currentSection === 0 && isMobile ? 'flex items-center gap-3' : 'ml-auto'} transition-transform hover:scale-105`}
+            className="ml-auto transition-transform hover:scale-105"
           >
             <img
               src="/images/logo-white.png"
               alt="Strelka"
-              className={`h-8 w-auto block md:hidden transition-transform hover:scale-105 ${currentSection === 0 && isMobile ? 'md:h-10' : 'md:h-10'}`}
+              className="h-8 w-auto block md:hidden transition-transform hover:scale-105 md:h-10"
             />
           </button>
         )}
