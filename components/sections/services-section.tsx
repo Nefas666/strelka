@@ -21,13 +21,13 @@ export function ServicesSection() {
           className={`mb-12 transition-all duration-700 mb-2 md:mb-16 ${isVisible ? "translate-y-0 opacity-100" : "-translate-y-12 opacity-0"
             }`}
         >
-          <h2 className="mb-2 font-sans text-5xl font-light tracking-tight text-foreground md:text-6xl lg:text-7xl">
+          <h2 className="mb-2 font-sans text-4xl font-light tracking-tight text-foreground md:text-6xl lg:text-7xl">
             Servizi
           </h2>
-          <p className="font-mono text-sm text-foreground/60 md:text-base">/ Quello che posso fare</p>
+          <p className="font-mono text-sm text-foreground/60 md:text-base"><img src="/favicon-32x32.png" alt="favicon" className="inline-block w-4 h-4 mx-1" /> Quello che posso fare</p>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-2 md:gap-x-16 md:gap-y-12 lg:gap-x-24">
+        <div className="space-y-3 md:grid md:grid-cols-2 md:gap-x-16 md:gap-y-12 md:space-y-0 lg:gap-x-24">
           {[
             {
               title: "Creative Development & Technology",
@@ -103,12 +103,41 @@ function ServiceCard({
         transitionDelay: `${index * 150}ms`,
       }}
     >
-      <div className="mb-3 flex items-center gap-3">
-        <div className="h-px w-8 bg-foreground/30 transition-all duration-300 group-hover:w-12 group-hover:bg-foreground/50" />
-        <span className="font-mono text-xs text-foreground/60">0{index + 1}</span>
+      {/* Mobile Accordion */}
+      <div className="md:hidden">
+        <button
+          onClick={onToggle}
+          className="w-full text-left"
+        >
+          <div className="mb-3 flex items-center justify-between gap-3">
+            <div className="flex items-center gap-3">
+              <div className="h-px w-8 bg-foreground/30 transition-all duration-300 group-hover:w-12 group-hover:bg-foreground/50" />
+              <span className="font-mono text-xs text-foreground/60">0{index + 1}</span>
+            </div>
+            <ChevronDown
+              className={`h-4 w-4 text-foreground/60 transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''
+                }`}
+            />
+          </div>
+          <h3 className="mb-2 font-sans text-xl font-light text-foreground">{service.title}</h3>
+        </button>
+        <div
+          className={`overflow-hidden transition-all duration-300 ${isExpanded ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'
+            }`}
+        >
+          <p className="text-sm leading-relaxed text-foreground/80">{service.description}</p>
+        </div>
       </div>
-      <h3 className="mb-2 font-sans text-2xl font-light text-foreground md:text-3xl">{service.title}</h3>
-      <p className="max-w-sm text-sm leading-relaxed text-foreground/80 md:text-base">{service.description}</p>
+
+      {/* Desktop Layout */}
+      <div className="hidden md:block">
+        <div className="mb-3 flex items-center gap-3">
+          <div className="h-px w-8 bg-foreground/30 transition-all duration-300 group-hover:w-12 group-hover:bg-foreground/50" />
+          <span className="font-mono text-xs text-foreground/60">0{index + 1}</span>
+        </div>
+        <h3 className="mb-2 font-sans text-2xl font-light text-foreground md:text-3xl">{service.title}</h3>
+        <p className="max-w-sm text-sm leading-relaxed text-foreground/80 md:text-base">{service.description}</p>
+      </div>
     </div>
   )
 }

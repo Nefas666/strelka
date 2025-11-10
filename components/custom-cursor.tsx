@@ -5,9 +5,11 @@ import { useEffect, useRef } from "react"
 export function CustomCursor() {
   const outerRef = useRef<HTMLDivElement>(null)
   const innerRef = useRef<HTMLDivElement>(null)
+  const faviconRef = useRef<HTMLDivElement>(null)
   const positionRef = useRef({ x: 0, y: 0 })
   const targetPositionRef = useRef({ x: 0, y: 0 })
   const isPointerRef = useRef(false)
+  const isLinkRef = useRef(false)
 
   useEffect(() => {
     let animationFrameId: number
@@ -20,12 +22,15 @@ export function CustomCursor() {
       positionRef.current.x = lerp(positionRef.current.x, targetPositionRef.current.x, 0.15)
       positionRef.current.y = lerp(positionRef.current.y, targetPositionRef.current.y, 0.15)
 
-      if (outerRef.current && innerRef.current) {
-        const scale = isPointerRef.current ? 1.5 : 1
-        const innerScale = isPointerRef.current ? 0.5 : 1
+      if (outerRef.current && innerRef.current && faviconRef.current) {
+        const scale = isPointerRef.current && !isLinkRef.current ? 1.5 : 1
+        const innerScale = isPointerRef.current && !isLinkRef.current ? 0.5 : 1
+        const showFavicon = isLinkRef.current
 
         outerRef.current.style.transform = `translate3d(${positionRef.current.x}px, ${positionRef.current.y}px, 0) translate(-50%, -50%) scale(${scale})`
         innerRef.current.style.transform = `translate3d(${positionRef.current.x}px, ${positionRef.current.y}px, 0) translate(-50%, -50%) scale(${innerScale})`
+        faviconRef.current.style.transform = `translate3d(${positionRef.current.x}px, ${positionRef.current.y}px, 0) translate(-50%, -50%) scale(${showFavicon ? 1 : 0})`
+        faviconRef.current.style.opacity = showFavicon ? '1' : '0'
       }
 
       animationFrameId = requestAnimationFrame(updateCursor)
@@ -37,6 +42,7 @@ export function CustomCursor() {
       const target = e.target as HTMLElement
       isPointerRef.current =
         window.getComputedStyle(target).cursor === "pointer" || target.tagName === "BUTTON" || target.tagName === "A"
+      isLinkRef.current = target.tagName === "A"
     }
 
     window.addEventListener("mousemove", handleMouseMove, { passive: true })
@@ -63,6 +69,13 @@ export function CustomCursor() {
         style={{ contain: "layout style paint" }}
       >
         <div className="h-2 w-2 rounded-full bg-white" />
+      </div>
+      <div
+        ref={faviconRef}
+        className="pointer-events-none fixed left-0 top-0 z-50 transition-opacity duration-200 will-change-transform"
+        style={{ contain: "layout style paint", opacity: 0 }}
+      >
+        <img src="/favicon-32x32.png" alt="" className="w-6 h-6" />
       </div>
     </>
   )

@@ -243,12 +243,12 @@ export default function Home() {
           </button>
         )}
 
-        <div className="hidden items-center gap-4 md:flex">
+        <div className="hidden items-center gap-16 md:flex">
           {["Home", "Progetti", "Servizi", "About", "Contatti"].map((item, index) => (
             <button
               key={item}
               onClick={() => scrollToSection(index)}
-              className={`group relative font-sans text-xl font-medium  transition-colors ${currentSection === index ? "text-foreground" : "text-foreground/80 hover:text-foreground"
+              className={`group relative font-sans text-xl font-light transition-colors ${currentSection === index ? "text-foreground" : "text-foreground/80 hover:text-foreground"
                 }`}
             >
               {item}
@@ -269,22 +269,22 @@ export default function Home() {
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
         {/* Hero Section */}
-        <section className="flex w-screen shrink-0 flex-col justify-end px-4 pb-12 pt-20 md:px-6 md:pb-16 md:pt-24" style={{ minHeight: viewportHeight }}>
+        <section className="flex w-screen shrink-0 flex-col justify-end px-4 pb-8 pt-16 md:px-6 md:pb-16 md:pt-24" style={{ minHeight: viewportHeight }}>
           <div className="max-w-3xl">
 
-            <h1 className="mb-6 animate-in fade-in slide-in-from-bottom-8 font-sans text-6xl font-light leading-[1.1] tracking-tight text-foreground duration-1000 md:text-7xl lg:text-8xl">
+            <h1 className="mb-4 animate-in fade-in slide-in-from-bottom-8 font-sans text-4xl font-light leading-[1.1] tracking-tight text-foreground duration-1000 md:text-6xl lg:text-8xl">
               <span className="text-balance">
                 Esperienze digitali
                 <br />
                 in evoluzione
               </span>
             </h1>
-            <p className="mb-8 max-w-xl animate-in fade-in slide-in-from-bottom-4 text-lg leading-relaxed text-foreground/90 duration-1000 delay-200 md:text-xl">
+            <p className="mb-6 max-w-xl animate-in fade-in slide-in-from-bottom-4 text-base leading-relaxed text-foreground/90 duration-1000 delay-200 md:text-lg lg:text-xl">
               <span className="text-pretty">
                 Trasformare la tua attività con soluzioni web moderne, design personalizzato e tecnologie innovative che ti distinguono dalla concorrenza.
               </span>
             </p>
-            <div className="flex animate-in fade-in slide-in-from-bottom-4 flex-col gap-4 duration-1000 delay-300 sm:flex-row sm:items-center">
+            <div className="flex animate-in fade-in slide-in-from-bottom-4 flex-col gap-3 duration-1000 delay-300 sm:flex-row sm:items-center">
               <MagneticButton
                 size="lg"
                 variant="primary"

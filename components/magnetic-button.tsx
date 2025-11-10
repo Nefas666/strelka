@@ -20,7 +20,7 @@ export function MagneticButton({
 }: MagneticButtonProps) {
   const ref = useRef<HTMLButtonElement>(null)
   const positionRef = useRef({ x: 0, y: 0 })
-  const rafRef = useRef<number>()
+  const rafRef = useRef<number | undefined>(undefined)
 
   const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (!ref.current) return
@@ -58,8 +58,8 @@ export function MagneticButton({
   }
 
   const sizes = {
-    default: "px-6 py-2.5 text-sm",
-    lg: "px-8 py-3.5 text-base",
+    default: "px-4 py-2 text-xs md:px-6 md:py-2.5 md:text-sm",
+    lg: "px-6 py-2.5 text-sm md:px-8 md:py-3.5 md:text-base",
   }
 
   return (
