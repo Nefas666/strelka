@@ -125,12 +125,10 @@ function DvDFavicon() {
       {isAnimating && (
         <div
           ref={sectionRef}
-          className="fixed inset-0 pointer-events-none z-50"
+          className="absolute inset-0 pointer-events-none z-50"
           style={{
-            top: 0,
-            left: 0,
-            width: '100vw',
-            height: '100vh'
+            width: '100%',
+            height: '100%'
           }}
         >
           <img
