@@ -121,8 +121,28 @@
     @apply border-border outline-ring/50;
     cursor: none;
   }
+
   body {
     @apply bg-background text-foreground;
+  }
+
+  /* Regole specifiche per mobile per prevenire tagli del contenuto */
+  @media (max-width: 767px) {
+    html {
+      height: -webkit-fill-available;
+    }
+
+    body {
+      min-height: 100vh;
+      min-height: -webkit-fill-available;
+    }
+
+    /* Assicura che le sezioni non vengano tagliate su mobile */
+    section {
+      max-height: 85vh;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
   }
 
   [data-scroll-container] {

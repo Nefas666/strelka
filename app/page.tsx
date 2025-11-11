@@ -269,7 +269,7 @@ export default function Home() {
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
         {/* Hero Section */}
-        <section className="flex w-screen shrink-0 flex-col justify-end px-4 pb-8 pt-16 md:px-6 md:pb-16 md:pt-24" style={{ minHeight: viewportHeight }}>
+        <section className="flex w-screen shrink-0 flex-col justify-end px-4 pb-8 pt-16 md:px-6 md:pb-16 md:pt-24" style={{ height: viewportHeight }}>
           <div className="max-w-3xl">
 
             <h1 className="mb-4 animate-in fade-in slide-in-from-bottom-8 font-sans text-4xl font-light leading-[1.1] tracking-tight text-foreground duration-1000 md:text-6xl lg:text-8xl">

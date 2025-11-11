@@ -12,8 +12,9 @@ export function useViewportHeight() {
       if (isMobile) {
         // Calcoliamo l'altezza effettiva della viewport
         const height = window.innerHeight;
-        // Applichiamo un fattore di sicurezza (95%) per garantire che il contenuto sia visibile
-        const safeHeight = Math.floor(height * 0.95);
+        // Applichiamo un fattore di sicurezza più conservativo (85%) per garantire che il contenuto sia sempre visibile
+        // considerando barre di navigazione, URL bar e altri elementi UI del browser mobile
+        const safeHeight = Math.floor(height * 0.85);
         setViewportHeight(`${safeHeight}px`);
       } else {
         // Su desktop usiamo 100vh normalmente
@@ -54,8 +55,8 @@ export function useMaxViewportHeight() {
       if (isMobile) {
         // Calcoliamo l'altezza massima disponibile considerando la barra degli indirizzi
         const height = window.innerHeight;
-        // Usiamo un fattore più conservativo (90%) per il max-height
-        const safeHeight = Math.floor(height * 0.9);
+        // Usiamo un fattore ancora più conservativo (80%) per il max-height su mobile
+        const safeHeight = Math.floor(height * 0.8);
         setMaxHeight(`${safeHeight}px`);
       } else {
         setMaxHeight("100vh");
