@@ -80,14 +80,14 @@ export function ContactSection() {
   return (
     <section
       ref={ref}
-      className="flex w-screen shrink-0 snap-start items-center px-4 pt-10 md:px-6 md:pt-20 lg:px-16"
+      className="flex w-screen shrink-0 snap-start items-center px-4 pt-10 md:px-6 md:pt-20 lg:px-8"
       style={{ height: maxHeight, maxHeight: maxHeight }}
     >
       <div className="mx-auto w-full max-w-7xl">
-        <div className="grid gap-4 md:grid-cols-[1.2fr_1fr] md:gap-16 lg:gap-24">
-          <div className="flex flex-col justify-center">
+        <div className="grid gap-4 md:grid-cols-[1fr_1.2fr] md:gap-12 lg:gap-16">
+          <div className="flex flex-col justify-start -mt-18">
             <div
-              className={`mb-3 transition-all duration-700 md:mb-12 ${isVisible ? "translate-x-0 opacity-100" : "-translate-x-12 opacity-0"
+              className={`mb-2 transition-all duration-700 ${isVisible ? "translate-x-0 opacity-100" : "-translate-x-3 opacity-0"
                 }`}
             >
               <h2 className="mb-2 font-sans text-3xl font-light leading-[1.05] tracking-tight text-foreground md:mb-3 md:text-7xl lg:text-8xl">
@@ -150,7 +150,7 @@ export function ContactSection() {
           </div>
 
           {/* Right side - Minimal form */}
-          <div className="flex flex-col justify-center">
+          <div className="flex flex-col justify-start -mt-12">
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2 md:space-y-6">
                 <div

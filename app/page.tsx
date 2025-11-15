@@ -214,50 +214,41 @@ export default function Home() {
         <div className="absolute inset-0 bg-black/20" />
       </div>
 
-      <nav
-        className={`fixed left-0 right-0 top-0 z-50 flex items-center justify-between px-4 py-4 transition-all duration-700 md:px-6 md:py-6 ${isLoaded ? "opacity-100" : "opacity-0"
-          }`}
-      >
-        {/* Logo dinamico basato sulla sezione */}
-        {currentSection === 0 ? (
-          <button
-            onClick={() => scrollToSection(0)}
-            className="flex items-center gap-3 transition-transform hover:scale-105"
-          >
-            <img
-              src="/images/logo-white.png"
-              alt="Strelka"
-              className="h-20 w-auto transition-transform hover:scale-105 md:h-24"
-            />
-          </button>
-        ) : (
-          <button
-            onClick={() => scrollToSection(0)}
-            className="ml-auto transition-transform hover:scale-105"
-          >
-            <img
-              src="/images/logo-white.png"
-              alt="Strelka"
-              className="h-8 w-auto block md:hidden transition-transform hover:scale-105 md:h-10"
-            />
-          </button>
-        )}
+      {/* Logo fisso in alto a sinistra */}
+      <div className={`pointer-events-none fixed left-4 top-4 z-50 md:left-6 md:top-6 transition-opacity duration-700 ${isLoaded ? "opacity-100" : "opacity-0"}`}>
+        <button
+          onClick={() => scrollToSection(0)}
+          className="pointer-events-auto flex items-center gap-3 transition-transform hover:scale-105"
+        >
+          <img
+            src="/images/logo-white.png"
+            alt="Strelka"
+            className="h-10 w-auto md:h-12"
+          />
+        </button>
+      </div>
 
-        <div className="hidden items-center gap-16 md:flex">
-          {["Home", "Progetti", "Servizi", "About", "Contatti"].map((item, index) => (
-            <button
-              key={item}
-              onClick={() => scrollToSection(index)}
-              className={`group relative font-sans text-xl font-light transition-colors ${currentSection === index ? "text-foreground" : "text-foreground/80 hover:text-foreground"
-                }`}
-            >
-              {item}
-              <span
-                className={`absolute -bottom-1 left-0 h-px bg-foreground transition-all duration-300 ${currentSection === index ? "w-full" : "w-0 group-hover:w-full"
-                  }`}
-              />
-            </button>
-          ))}
+      {/* Navigazione in bottom, vicina al bordo sinistro, con voci di menu grandi */}
+      <nav
+        className={`fixed bottom-0 right-0 z-50 flex w-full items-center justify-end px-4 py-3 md:px-6 md:py-4 transition-opacity duration-700 ${isLoaded ? "opacity-100" : "opacity-0"}`}
+      >
+        <div className="flex items-center gap-4 md:gap-8">
+          {["Home", "Progetti", "Servizi", "About", "Contatti"].map((item, index) => {
+            const isActive = currentSection === index
+
+            return (
+              <button
+                key={item}
+                onClick={() => scrollToSection(index)}
+                className={`relative font-sans invert-50 text-lg md:text-4xl font-light transition-colors duration-300 ${isActive ? "text-foreground" : "text-foreground/0 hidden"}`}
+              >
+                {item}
+                <span
+                  className={`absolute -top-1 left-0 h-px bg-foreground transition-all duration-300 ${isActive ? "w-full" : "w-0"}`}
+                />
+              </button>
+            )
+          })}
         </div>
       </nav>
 
@@ -269,7 +260,7 @@ export default function Home() {
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
         {/* Hero Section */}
-        <section className="flex w-screen shrink-0 flex-col justify-end px-4 pb-8 pt-16 md:px-6 md:pb-16 md:pt-24" style={{ height: viewportHeight }}>
+        <section className="flex w-screen shrink-0 flex-col justify-end px-4 pb-16 pt-16 md:px-6 md:pb-24 md:pt-24" style={{ height: viewportHeight }}>
           <div className="max-w-3xl">
 
             <h1 className="mb-4 animate-in fade-in slide-in-from-bottom-8 font-sans text-4xl font-light leading-[1.1] tracking-tight text-foreground duration-1000 md:text-6xl lg:text-8xl">
