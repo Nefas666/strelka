@@ -230,7 +230,7 @@ export default function Home() {
 
       {/* Navigazione in bottom, vicina al bordo sinistro, con voci di menu grandi */}
       <nav
-        className={`fixed bottom-0 right-0 z-50 flex w-full items-center justify-end px-4 py-3 md:px-6 md:py-4 transition-opacity duration-700 ${isLoaded ? "opacity-100" : "opacity-0"}`}
+        className={`fixed top-0 right-0 z-50 flex w-full items-center justify-end px-4 py-3 md:px-6 md:py-4 transition-opacity duration-700 ${isLoaded ? "opacity-100" : "opacity-0"}`}
       >
         <div className="flex items-center gap-4 md:gap-8">
           {["Home", "Progetti", "Servizi", "About", "Contatti"].map((item, index) => {
