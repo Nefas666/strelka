@@ -80,25 +80,25 @@ export function ContactSection() {
   return (
     <section
       ref={ref}
-      className="flex w-screen shrink-0 snap-start items-center px-4 pt-10 md:px-6 md:pt-20 lg:px-8"
+      className="flex w-screen shrink-0 snap-start items-center px-4 mt-12 md:px-6 md:mt-20 lg:px-8"
       style={{ height: maxHeight, maxHeight: maxHeight }}
     >
       <div className="mx-auto w-full max-w-7xl">
         <div className="grid gap-4 md:grid-cols-[1fr_1.2fr] md:gap-12 lg:gap-16">
-          <div className="flex flex-col justify-start -mt-18">
+          <div className="flex flex-col justify-start md:-mt-18 mt-12">
             <div
-              className={`mb-2 transition-all duration-700 ${isVisible ? "translate-x-0 opacity-100" : "-translate-x-3 opacity-0"
+              className={`mb-0 md:mb-2 transition-all duration-700 ${isVisible ? "translate-x-0 opacity-100" : "-translate-x-3 opacity-0"
                 }`}
             >
               <h2 className="mb-2 font-sans text-3xl font-light leading-[1.05] tracking-tight text-foreground md:mb-3 md:text-7xl lg:text-8xl">
                 Contattami
               </h2>
-              <p className="font-mono text-xs text-foreground/60 md:text-base"><img src="/favicon-32x32.png" alt="favicon" className="inline-block w-4 h-4 mx-1" /> Richiedi un preventivo</p>
+              <p className="hidden md:block font-mono text-xs text-foreground/60 md:text-base"><img src="/favicon-32x32.png" alt="favicon" className="inline-block w-4 h-4 mx-1" /> Richiedi un preventivo</p>
             </div>
 
             <div className="space-y-2 md:space-y-8">
               <a
-                href="mailto:info@strelka.it"
+                href="mailto:contact@strelka.it"
                 className={`group block transition-all duration-700 ${isVisible ? "translate-x-0 opacity-100" : "-translate-x-16 opacity-0"
                   }`}
                 style={{ transitionDelay: "200ms" }}
@@ -150,7 +150,7 @@ export function ContactSection() {
           </div>
 
           {/* Right side - Minimal form */}
-          <div className="flex flex-col justify-start -mt-12">
+          <div className="flex flex-col justify-start md:-mt-12 mt-12">
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2 md:space-y-6">
                 <div

@@ -215,7 +215,7 @@ export default function Home() {
       </div>
 
       {/* Logo fisso in alto a sinistra */}
-      <div className={`pointer-events-none fixed left-4 top-4 z-50 md:left-6 md:top-6 transition-opacity duration-700 ${isLoaded ? "opacity-100" : "opacity-0"}`}>
+      <div className={`pointer-events-none fixed left-4 top-4 z-50 md:left-6 md:top-2 transition-opacity duration-700 ${isLoaded ? "opacity-100" : "opacity-0"}`}>
         <button
           onClick={() => scrollToSection(0)}
           className="pointer-events-auto flex items-center gap-3 transition-transform hover:scale-105"
@@ -223,14 +223,14 @@ export default function Home() {
           <img
             src="/images/logo-white.png"
             alt="Strelka"
-            className="h-10 w-auto md:h-12"
+            className="h-10 w-auto md:h-24"
           />
         </button>
       </div>
 
       {/* Navigazione in bottom, vicina al bordo sinistro, con voci di menu grandi */}
       <nav
-        className={`fixed top-0 right-0 z-50 flex w-full items-center justify-end px-4 py-3 md:px-6 md:py-4 transition-opacity duration-700 ${isLoaded ? "opacity-100" : "opacity-0"}`}
+        className={`fixed top-2 right-0 z-50 flex w-full items-center justify-end px-4 py-3 md:px-6 md:py-4 transition-opacity duration-700 ${isLoaded ? "opacity-100" : "opacity-0"}`}
       >
         <div className="flex items-center gap-4 md:gap-8">
           {["Home", "Progetti", "Servizi", "About", "Contatti"].map((item, index) => {
@@ -240,12 +240,12 @@ export default function Home() {
               <button
                 key={item}
                 onClick={() => scrollToSection(index)}
-                className={`relative font-sans invert-50 text-lg md:text-4xl font-light transition-colors duration-300 ${isActive ? "text-foreground" : "text-foreground/0 hidden"}`}
+                className={`relative font-sans invert-75 text-lg md:text-4xl font-light transition-colors duration-300 ${isActive ? "text-foreground" : "text-foreground/0 hidden"}`}
               >
                 {item}
-                <span
+                {/* <span
                   className={`absolute -top-1 left-0 h-px bg-foreground transition-all duration-300 ${isActive ? "w-full" : "w-0"}`}
-                />
+                /> */}
               </button>
             )
           })}
