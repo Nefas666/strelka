@@ -75,10 +75,9 @@
 }
 
 @theme inline {
-  /* optional: --font-sans, --font-serif, --font-mono if they are applied in the layout.tsx */
   /* Colleghiamo Tailwind font-sans alla variabile generata da GeistSans (Next font) */
-  --font-sans: var(--font-geist-sans);
-  --font-mono: "Geist Mono", "Geist Mono Fallback";
+  --font-sans: var(--font-geist-sans), "Geist", system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -136,13 +135,6 @@
     body {
       min-height: 100vh;
       min-height: -webkit-fill-available;
-    }
-
-    /* Assicura che le sezioni non vengano tagliate su mobile */
-    section {
-      max-height: 85vh;
-      overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
     }
   }
 
