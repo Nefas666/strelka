@@ -13,10 +13,10 @@ export function ServicesSection() {
   return (
     <section
       ref={ref}
-      className="flex w-screen shrink-0 snap-start items-center px-4 pt-16 md:px-6 md:pt-20 lg:px-16"
+      className="w-screen shrink-0 snap-start overflow-y-auto px-4 pt-16 md:px-6 md:pt-20 lg:px-16"
       style={{ height: maxHeight, maxHeight: maxHeight }}
     >
-      <div className="mx-auto w-full max-w-7xl">
+      <div className="min-h-full flex flex-col justify-center mx-auto w-full max-w-7xl pb-8">
         <div
           className={`mb-12 transition-all duration-700 mb-2 md:mb-16 ${isVisible ? "translate-y-0 opacity-100" : "-translate-y-12 opacity-0"
             }`}

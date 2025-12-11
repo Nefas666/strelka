@@ -11,7 +11,7 @@ function DvDFavicon() {
   const [isAnimating, setIsAnimating] = useState(false)
   const [colorIndex, setColorIndex] = useState(0)
   const sectionRef = useRef<HTMLDivElement>(null)
-  const animationRef = useRef<number>()
+  const animationRef = useRef<number | null>(null)
   const faviconSize = 32
 
   const colors = [
@@ -153,10 +153,10 @@ export function AboutSection({ scrollToSection }: { scrollToSection?: (index: nu
   return (
     <section
       ref={ref}
-      className="flex w-screen shrink-0 snap-start items-center px-4 pt-12 md:px-6 md:pt-20 lg:px-16"
+      className="w-screen shrink-0 snap-start overflow-y-auto px-4 pt-12 md:px-6 md:pt-20 lg:px-16"
       style={{ height: maxHeight, maxHeight: maxHeight }}
     >
-      <div className="mx-auto w-full max-w-7xl">
+      <div className="min-h-full flex flex-col justify-center mx-auto w-full max-w-7xl pb-8">
         <div className="grid gap-6 md:grid-cols-2 md:gap-16 lg:gap-24">
           {/* Right side - Profile Card */}
           <div>

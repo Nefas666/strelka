@@ -1,6 +1,6 @@
 "use client"
 
-import { Shader, ChromaFlow, Swirl } from "shaders/react"
+import { HydraBackground } from "@/components/hydra-background"
 import { CustomCursor } from "@/components/custom-cursor"
 import { GrainOverlay } from "@/components/grain-overlay"
 import { WorkSection } from "@/components/sections/work-section"
@@ -17,38 +17,11 @@ export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false)
   const touchStartY = useRef(0)
   const touchStartX = useRef(0)
-  const shaderContainerRef = useRef<HTMLDivElement>(null)
   const scrollThrottleRef = useRef<number | undefined>(undefined)
   const viewportHeight = useViewportHeight()
 
   useEffect(() => {
-    const checkShaderReady = () => {
-      if (shaderContainerRef.current) {
-        const canvas = shaderContainerRef.current.querySelector("canvas")
-        if (canvas && canvas.width > 0 && canvas.height > 0) {
-          setIsLoaded(true)
-          return true
-        }
-      }
-      return false
-    }
-
-    if (checkShaderReady()) return
-
-    const intervalId = setInterval(() => {
-      if (checkShaderReady()) {
-        clearInterval(intervalId)
-      }
-    }, 100)
-
-    const fallbackTimer = setTimeout(() => {
-      setIsLoaded(true)
-    }, 1500)
-
-    return () => {
-      clearInterval(intervalId)
-      clearTimeout(fallbackTimer)
-    }
+    setIsLoaded(true)
   }, [])
 
   const scrollToSection = (index: number) => {
@@ -180,37 +153,10 @@ export default function Home() {
       <GrainOverlay />
 
       <div
-        ref={shaderContainerRef}
         className={`fixed inset-0 z-0 transition-opacity duration-700 ${isLoaded ? "opacity-100" : "opacity-0"}`}
         style={{ contain: "strict" }}
       >
-        <Shader className="h-full w-full">
-          <Swirl
-            colorA="#1e3a5f"
-            colorB="#d4628e"
-            speed={0.8}
-            detail={0.8}
-            blend={50}
-            coarseX={40}
-            coarseY={40}
-            mediumX={40}
-            mediumY={40}
-            fineX={40}
-            fineY={40}
-          />
-          <ChromaFlow
-            baseColor="#2d3748"
-            upColor="#1e3a5f"
-            downColor="#4a5568"
-            leftColor="#d4628e"
-            rightColor="#d4628e"
-            intensity={0.9}
-            radius={1.8}
-            momentum={25}
-            maskType="alpha"
-            opacity={0.97}
-          />
-        </Shader>
+        <HydraBackground />
         <div className="absolute inset-0 bg-black/20" />
       </div>
 
