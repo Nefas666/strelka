@@ -89,6 +89,51 @@ export function HydraBackground({ className }: { className?: string }) {
                             .modulateRotate(h.osc(oscFreq, 0), rng(0.5, 2))
                             .rotate(0, rng(-0.2, 0.2))
                             .out()
+                    },
+                    // Preset 6: Eerie Ear (User Requested)
+                    (h: any) => {
+                        h.osc(18, 0.1, 0).color(2, 0.1, 2)
+                            .mult(h.osc(20, 0.01, 0))
+                            .repeat(2, 20)
+                            .rotate(0.5)
+                            .modulate(h.o1)
+                            .scale(1, () => 2 + Math.sin(Date.now() / 2000) * 0.5)
+                            .diff(h.o1)
+                            .out(h.o0)
+
+                        h.osc(20, 0.2, 0).color(2, 0.7, 0.1)
+                            .mult(h.osc(40))
+                            .modulateRotate(h.o0, 0.2)
+                            .rotate(0.2)
+                            .out(h.o1)
+                    },
+                    // Preset 7: Geometric Shapes & Scroll (User Requested)
+                    (h: any) => {
+                        const t = () => Date.now() / 1000
+
+                        h.shape(([4, 5, 6] as any).fast(0.1).smooth(1), 0.000001, ([0.2, 0.7] as any).smooth(1))
+                            .color(0.2, 0.4, 0.3)
+                            .scrollX(() => Math.sin(t() * 0.27))
+                            .add(
+                                h.shape(([4, 5, 6] as any).fast(0.1).smooth(1), 0.000001, ([0.2, 0.7, 0.5, 0.3] as any).smooth(1))
+                                    .color(0.6, 0.2, 0.5)
+                                    .scrollY(0.35)
+                                    .scrollX(() => Math.sin(t() * 0.33))
+                            )
+                            .add(
+                                h.shape(([4, 5, 6] as any).fast(0.1).smooth(1), 0.000001, ([0.2, 0.7, 0.3] as any).smooth(1))
+                                    .color(0.2, 0.4, 0.6)
+                                    .scrollY(-0.35)
+                                    .scrollX(() => Math.sin(t() * 0.41) * -1)
+                            )
+                            .add(
+                                h.src(h.o0).shift(0.001, 0.01, 0.001)
+                                    .scrollX(([0.05, -0.05] as any).fast(0.1).smooth(1))
+                                    .scale(([1.05, 0.9] as any).fast(0.3).smooth(1), ([1.05, 0.9, 1] as any).fast(0.29).smooth(1))
+                                , 0.85
+                            )
+                            .modulate(h.voronoi(10, 2, 2))
+                            .out()
                     }
                 ]
 
