@@ -1,3 +1,32 @@
 {
-  "conventionalCommits.scopes": ["api"]
+	"conventionalCommits.scopes": ["api"],
+	"workbench.colorCustomizations": {
+		"activityBar.activeBackground": "#8f8ced",
+		"activityBar.activeBorder": "#15202b",
+		"activityBar.background": "#8f8ced",
+		"activityBar.foreground": "#15202b",
+		"activityBar.inactiveForeground": "#15202b99",
+		"activityBarBadge.background": "#c1231e",
+		"activityBarBadge.foreground": "#e7e7e7",
+		"activityBarTop.activeBackground": "#8f8ced",
+		"activityBarTop.activeBorder": "#15202b",
+		"activityBarTop.background": "#8f8ced",
+		"activityBarTop.foreground": "#15202b",
+		"activityBarTop.inactiveForeground": "#15202b99",
+		"commandCenter.border": "#e7e7e799",
+		"commandCenter.foreground": "#e7e7e7",
+		"sash.hoverBorder": "#8f8ced",
+		"statusBar.background": "#6460e6",
+		"statusBar.debuggingBackground": "#6460e6",
+		"statusBar.debuggingForeground": "#e7e7e7",
+		"statusBar.foreground": "#e7e7e7",
+		"statusBarItem.hoverBackground": "#8f8ced",
+		"statusBarItem.remoteBackground": "#ee9491",
+		"statusBarItem.remoteForeground": "#e7e7e7",
+		"titleBar.activeBackground": "#6460e6",
+		"titleBar.activeForeground": "#e7e7e7",
+		"titleBar.inactiveBackground": "#6460e699",
+		"titleBar.inactiveForeground": "#e7e7e799"
+	},
+	"peacock.color": "#6460e6"
 }
