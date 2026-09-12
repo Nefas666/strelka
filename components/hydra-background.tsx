@@ -134,12 +134,81 @@ export function HydraBackground({ className }: { className?: string }) {
                             )
                             .modulate(h.voronoi(10, 2, 2))
                             .out()
+                    },
+                    // Preset 8: Pixelated Colorama
+                    (h: any) => {
+                        const pixels = rngInt(20, 80)
+
+                        h.osc(rng(15, 40), 0.05, rng(0.5, 1.2))
+                            .pixelate(pixels, pixels)
+                            .colorama(rng(0.02, 0.2))
+                            .modulate(h.noise(rng(2, 6), 0.1), rng(0.05, 0.15))
+                            .saturate(rng(0.8, 1.6))
+                            .out()
+                    },
+                    // Preset 9: Gradient Waves
+                    (h: any) => {
+                        const baseColor = rngPick([[0.05, 0.1, 0.25], [0.15, 0.05, 0.2], [0.05, 0.15, 0.12]])
+
+                        h.gradient(rng(0, 0.5))
+                            .modulate(h.noise(rng(1, 4), 0.05), rng(0.2, 0.5))
+                            .scrollY(0, rng(0.02, 0.08))
+                            .color(baseColor[0], baseColor[1], baseColor[2])
+                            .contrast(rng(1, 1.4))
+                            .out()
+                    },
+                    // Preset 10: Voronoi Kaleidoscope
+                    (h: any) => {
+                        h.voronoi(rng(5, 12), rng(0.05, 0.5), rng(0.3, 1))
+                            .kaleid(rngInt(3, 8))
+                            .modulateRotate(h.osc(rng(4, 10), 0), rng(0.3, 1))
+                            .color(rng(0.3, 0.9), rng(0.2, 0.6), rng(0.5, 1.1))
+                            .brightness(rng(-0.15, 0))
+                            .out()
+                    },
+                    // Preset 11: Feedback Dream
+                    (h: any) => {
+                        const drift = rng(0.001, 0.008)
+
+                        h.noise(rng(4, 10), 0.1)
+                            .color(rng(0.2, 0.5), rng(0.3, 0.7), rng(0.6, 1))
+                            .modulate(h.noise(rng(2, 5), 0.1), rng(0.1, 0.3))
+                            .add(
+                                h.src(h.o0).scale(rng(1.005, 1.02)).shift(drift, 0, 0, drift),
+                                0.92
+                            )
+                            .brightness(-0.02)
+                            .out(h.o0)
+                    },
+                    // Preset 12: Posterize Glitch
+                    (h: any) => {
+                        h.osc(rng(10, 30), 0.1, rng(0.4, 1))
+                            .modulatePixelate(h.noise(rng(3, 8), 0.1), rng(10, 60))
+                            .posterize(rng(2, 4), rng(0.3, 0.7))
+                            .color(rng(0.8, 1.5), rng(0.1, 0.4), rng(0.5, 1))
+                            .out()
+                    },
+                    // Preset 13: Slow Radial Pulse
+                    (h: any) => {
+                        const t = () => Date.now() / 1000
+                        const pulseSpeed = rng(0.2, 0.6)
+                        const pulseAmt = rng(0.1, 0.3)
+                        const baseColor = rngPick([[0.1, 0.2, 0.4], [0.3, 0.1, 0.3], [0.1, 0.3, 0.25]])
+
+                        h.shape(rngInt(3, 6), rng(0.3, 0.7), rng(0.5, 1.5))
+                            .scale(() => 1 + Math.sin(t() * pulseSpeed) * pulseAmt)
+                            .modulate(h.noise(rng(1, 3), 0.1), rng(0.1, 0.25))
+                            .color(baseColor[0], baseColor[1], baseColor[2])
+                            .out()
                     }
                 ]
 
-                // Pick a random sketch
-                const randomSketch = sketches[Math.floor(Math.random() * sketches.length)]
-                randomSketch(hydra)
+                // Pick a random sketch (or force one with ?bg=N, 1-based)
+                const forced = Number(new URLSearchParams(window.location.search).get("bg"))
+                const sketchIndex = forced >= 1 && forced <= sketches.length
+                    ? forced - 1
+                    : Math.floor(Math.random() * sketches.length)
+                sketches[sketchIndex](hydra)
 
                 hydraRef.current = hydra
             } catch (e) {
