@@ -14,7 +14,7 @@ export function WorkSection() {
       className="w-screen shrink-0 snap-start overflow-y-auto px-4 pt-16 md:px-6 md:pt-20 lg:px-16"
       style={{ height: maxHeight, maxHeight: maxHeight }}
     >
-      <div className="min-h-full flex flex-col justify-center mx-auto w-full max-w-9xl pb-8">
+      <div className="min-h-full flex flex-col justify-center max-[500px]:justify-start mx-auto w-full max-w-9xl pb-8">
         <div
           className={`mb-12 transition-all duration-700 md:mb-6 ${isVisible ? "translate-x-0 opacity-100" : "-translate-x-12 opacity-0"
             }`}
@@ -60,7 +60,7 @@ export function WorkSection() {
                 direction: "left",
               },
               {
-                number: "03",
+                number: "04",
                 title: "Ipazia",
                 category: "Landing page for LLM's Research Startup",
                 year: "2025",
@@ -68,7 +68,7 @@ export function WorkSection() {
                 direction: "left",
               },
               {
-                number: "04",
+                number: "05",
                 title: "Thribe",
                 category: "Talent Agency Website",
                 year: "2025",
@@ -84,7 +84,7 @@ export function WorkSection() {
               //   direction: "left",
               // },
               {
-                number: "05",
+                number: "06",
                 title: "Inactual",
                 category: "Webzine & Indipendent Collective",
                 year: "2021",
@@ -110,7 +110,20 @@ function ProjectCard({
   index: number
   isVisible: boolean
 }) {
+  const linkColors = [
+    "text-blue-600",
+    "text-red-600",
+    "text-emerald-600",
+    "text-violet-600",
+    "text-orange-600",
+    "text-pink-600",
+    "text-cyan-700",
+    "text-indigo-600",
+  ]
+  const randomColor = () => linkColors[Math.floor(Math.random() * linkColors.length)]
+
   const [expanded, setExpanded] = useState(false)
+  const [linkColor, setLinkColor] = useState(linkColors[0])
 
   const getRevealClass = () => {
     if (!isVisible) {
@@ -124,7 +137,8 @@ function ProjectCard({
   return (
     <div
       className={`group transition-all duration-700 border-foreground/10
-        max-[500px]:relative max-[500px]:flex max-[500px]:min-h-[160px] max-[500px]:cursor-pointer max-[500px]:flex-col max-[500px]:justify-end max-[500px]:border max-[500px]:p-3
+        max-[500px]:relative max-[500px]:flex max-[500px]:min-h-40 max-[500px]:cursor-pointer max-[500px]:flex-col max-[500px]:justify-end max-[500px]:border max-[500px]:p-3 max-[500px]:transition-colors max-[500px]:duration-300
+        ${expanded ? "max-[500px]:bg-white max-[500px]:border-black/20" : ""}
         grid grid-cols-5 items-center gap-4 border-b py-4 hover:border-foreground/20
         ${getRevealClass()}`}
       style={{
@@ -132,6 +146,7 @@ function ProjectCard({
       }}
       onClick={() => {
         if (typeof window !== "undefined" && window.innerWidth <= 500) {
+          setLinkColor(randomColor())
           setExpanded((v) => !v)
         }
       }}
@@ -173,30 +188,45 @@ function ProjectCard({
       </div>
 
       {/* Mobile card */}
-      <div className="hidden max-[500px]:block">
+      <div className="hidden h-full w-full max-[500px]:flex max-[500px]:flex-col max-[500px]:justify-end">
+        <span
+          className={`absolute left-3 top-3 font-mono text-xs transition-colors duration-300 ${expanded ? "text-black/40" : "text-foreground/40"
+            }`}
+        >
+          {project.number}
+        </span>
         <div
           className={`overflow-hidden transition-all duration-300 ${expanded ? "mb-2 max-h-40 opacity-100" : "max-h-0 opacity-0"
             }`}
         >
-          <p className="font-mono text-[10px] uppercase leading-snug text-foreground/80">
+          <p
+            className={`font-mono text-[10px] uppercase leading-snug transition-colors duration-300 ${expanded ? "text-black/80" : "text-foreground/80"
+              }`}
+          >
             {project.category}
           </p>
           <a
             href={project.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-2 inline-block text-sm font-light text-primary transition-colors hover:text-primary/80"
+            className={`mt-2 inline-block text-sm font-light transition-opacity hover:opacity-80 ${linkColor}`}
             onClick={(e) => e.stopPropagation()}
           >
             Visita il sito
           </a>
         </div>
         <div className="flex flex-col items-start">
-          <span className="font-sans text-lg font-light leading-tight text-foreground">
-            {project.title}
-          </span>
-          <span className="font-mono text-xs text-foreground/50">
+          <span
+            className={`font-mono text-xs transition-colors duration-300 ${expanded ? "text-black/50" : "text-foreground/50"
+              }`}
+          >
             {project.year}
+          </span>
+          <span
+            className={`font-sans text-lg font-light leading-tight transition-colors duration-300 ${expanded ? "text-black" : "text-foreground"
+              }`}
+          >
+            {project.title}
           </span>
         </div>
       </div>

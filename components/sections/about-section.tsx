@@ -108,7 +108,7 @@ function DvDFavicon() {
             onClick={handleClick}
           >
             <img
-              src="/favicon-32x32.png"
+              src="/favicon/favicon-32x32.png"
               alt="Favicon DVD"
               className={`absolute w-8 h-8 m-2 transition-transform hover:scale-105 ${isAnimating ? colors[colorIndex] : ''}`}
             />
@@ -132,7 +132,7 @@ function DvDFavicon() {
           }}
         >
           <img
-            src="/favicon-32x32.png"
+            src="/favicon/favicon-32x32.png"
             alt="Favicon DVD"
             className={`absolute w-8 h-8 ${colors[colorIndex]}`}
             style={{

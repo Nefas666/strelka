@@ -41,8 +41,17 @@ export default function Home() {
       touchStartX.current = e.touches[0].clientX
     }
 
+    const isCurrentSectionScrollable = () => {
+      const section = scrollContainerRef.current?.children[currentSection] as HTMLElement | undefined
+      return !!section && section.scrollHeight > section.clientHeight + 2
+    }
+
     const handleTouchMove = (e: TouchEvent) => {
-      if (Math.abs(e.touches[0].clientY - touchStartY.current) > 10) {
+      const deltaY = e.touches[0].clientY - touchStartY.current
+      const deltaX = e.touches[0].clientX - touchStartX.current
+      if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > 10) {
+        // Se la sezione corrente ha scroll verticale, lasciamo che il browser scorra
+        if (isCurrentSectionScrollable()) return
         e.preventDefault()
       }
     }
@@ -54,6 +63,8 @@ export default function Home() {
       const deltaX = touchStartX.current - touchEndX
 
       if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > 50) {
+        // Se la sezione corrente è scrollabile, non navighiamo con swipe verticale
+        if (isCurrentSectionScrollable()) return
         if (deltaY > 0 && currentSection < 4) {
           scrollToSection(currentSection + 1)
         } else if (deltaY < 0 && currentSection > 0) {
