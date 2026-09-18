@@ -24,28 +24,28 @@ export function ServicesSection() {
           <h2 className="mb-2 font-sans text-4xl font-light tracking-tight text-foreground md:text-6xl lg:text-7xl">
             Servizi
           </h2>
-          <p className="font-mono text-sm text-foreground/60 md:text-base"><img src="/favicon-32x32.png" alt="favicon" className="inline-block w-4 h-4 mx-1" /> Quello che posso fare</p>
+          <p className="font-mono text-sm text-foreground/60 md:text-base"><img src="/favicon/favicon-32x32.png" alt="favicon" className="inline-block w-4 h-4 mx-1" /> Quello che posso fare</p>
         </div>
 
         <div className="space-y-3 md:grid md:grid-cols-2 md:gap-x-16 md:gap-y-12 md:space-y-0 lg:gap-x-24">
           {[
             {
-              title: "Creative Development & Technology",
+              title: "Creative Development",
               description: "Siti web personalizzati che si distinguono per design, velocità e usabilità, costruiti con le tecnologie più recenti per soluzioni performanti e scalabili",
               direction: "top",
             },
             {
-              title: "Visual Design & Restyling",
+              title: "Visual Design / Restyling",
               description: "Nuova vita ai siti web esistenti attraverso un design moderno, funzionalità migliorate e un'esperienza utente rinnovata",
               direction: "right",
             },
             {
-              title: "Ecommerce & Conversion",
+              title: "Ecommerce",
               description: "Piattaforme e-commerce complete e landing page ottimizzate per la conversione che catturano l'attenzione e generano risultati concreti",
               direction: "left",
             },
             {
-              title: "Knowledge Systems & Technical Strategy",
+              title: "Technical Strategy",
               description: "Sistemi di gestione dei contenuti personalizzati, progettati per rispondere alle specifiche esigenze della tua azienda",
               direction: "bottom",
             },

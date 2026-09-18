@@ -93,7 +93,7 @@ export function ContactSection() {
               <h2 className="mb-2 font-sans text-3xl font-light leading-[1.05] tracking-tight text-foreground md:mb-3 md:text-7xl lg:text-8xl">
                 Contattami
               </h2>
-              <p className="hidden md:block font-mono text-xs text-foreground/60 md:text-base"><img src="/favicon-32x32.png" alt="favicon" className="inline-block w-4 h-4 mx-1" /> Richiedi un preventivo</p>
+              <p className="hidden md:block font-mono text-xs text-foreground/60 md:text-base"><img src="/favicon/favicon-32x32.png" alt="favicon" className="inline-block w-4 h-4 mx-1" /> Richiedi un preventivo</p>
             </div>
 
             <div className="space-y-2 md:space-y-8 flex flex-col items-end md:items-start">

@@ -75,7 +75,7 @@ export function CustomCursor() {
         className="pointer-events-none fixed left-0 top-0 z-50 transition-opacity duration-200 will-change-transform"
         style={{ contain: "layout style paint", opacity: 0 }}
       >
-        <img src="/favicon-32x32.png" alt="" className="w-6 h-6" />
+        <img src="/favicon/favicon-32x32.png" alt="" className="w-6 h-6" />
       </div>
     </>
   )
