@@ -238,7 +238,7 @@ export default function Home() {
                 variant="primary"
                 onClick={() => scrollToSection(4)}
               >
-                Richiedi un Preventivo
+                Contattami
               </MagneticButton>
               <MagneticButton size="lg" variant="secondary" onClick={() => scrollToSection(2)}>
                 Scopri i Servizi
