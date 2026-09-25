@@ -61,6 +61,14 @@ export function WorkSection() {
               },
               {
                 number: "04",
+                title: "Soilsense",
+                category: "Web-based tool for interpreting environmental data (Claude + Copernicus Sentinel Data + ECMWF Data) ",
+                year: "2026",
+                url: "https://soilsense-community.vercel.app/",
+                direction: "left",
+              },
+              {
+                number: "05",
                 title: "Ipazia",
                 category: "Landing page for LLM's Research Startup",
                 year: "2025",
@@ -68,7 +76,7 @@ export function WorkSection() {
                 direction: "left",
               },
               {
-                number: "05",
+                number: "06",
                 title: "Thribe",
                 category: "Talent Agency Website",
                 year: "2025",
@@ -84,7 +92,7 @@ export function WorkSection() {
               //   direction: "left",
               // },
               {
-                number: "06",
+                number: "07",
                 title: "Inactual",
                 category: "Webzine & Indipendent Collective",
                 year: "2021",
